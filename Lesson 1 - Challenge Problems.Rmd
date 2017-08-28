@@ -1,0 +1,97 @@
+---
+title: "Group Challenge Problems"
+output: html_notebook
+---
+
+#Challenge #1
+
+###Problem
+1. Produce a vector of files in a folder of your chosing on your comptuer.
+2. Find the size of each file.
+3. Provide a vector that sorts the files from largest to smallest.  
+
+* You can ignore folders and files inside of subfolders.
+* When you run list.files(), without paramaters, what do you see.
+* What kind of object does list.files return?
+
+###Hints
+
+> setwd(...) allows us to programtically set our working directory
+
+> list.files(...) gets a list of file names
+
+> file.size(...) get the size of a file.
+
+#Challenge #2
+
+R contains hundreds of built in datasets for you to play with.  These can be very helpful while learning.
+
+```{r}
+LETTERS
+datasets::discoveries
+```
+
+You can learn more about a dataset by running:
+```{r}
+help(discoveries)
+```
+Take note of what is included in the data dictionary.
+
+Let's make it "rain" with the precip dataset.  Start by reading about it:
+```{r}
+help(precip)
+```
+
+Now, create a single vector, rain, that contains 3 elements.
+* The sum of the average rainfall for states with less than 25 inches of rain.
+* The sum of the average rainfall for states with more than 25 inches of rain and less than 40 inches of rain.
+* The sum of the average rainfall for states with more than 39 inches of rain.
+
+```{r}
+
+```
+
+#Challenge #3
+
+###Problem
+Let's create a big dataset to test the performance of vectorization of functions.  
+
+* Create a vector that has a length of 9,000,000.  
+* Each element should be an alternating character following the pattern: A B C A B C ...
+* Name that vector "bigdata"
+
+> bigdata <- ?
+
+Good job.  Unfortunatly, the big data police would like a change.  Please provide the following more descriptive labels
+> "A" should become "Hacking Skills"
+
+> "B" should become "Math & Stats"
+
+> "C" should become "Domain Knowledge"
+
+They tried to do this themselves by looping through each element (don't worry, we will cover for loops later in the class).  Unfortunatly, there solution takes too long on 9 million records.  Here is their code:
+
+```{r}
+rename = function(input_vector) {
+  output_vector = input_vector
+  for(index in seq_along(input_vector)) {
+    if(input_vector[index] == 'A') {
+      output_vector[index] = 'Text for A'
+    } else if(input_vector[index] == 'B') {
+      output_vector[index] = 'Text for B'
+    } else if(input_vector[index] == 'C') {
+      output_vector[index] = 'Text for C'
+    }   
+  }   
+  return(output_vector)
+}
+
+bigdata_fixed <- rename(input_vector = bigdata)
+```
+
+How can we do this in a way that takes advantage of R's support for vectorization?
+
+Vectors can really increase our performance.
+
+###Hint
+* Can the subselection function [ ] do more for us than just filter elements?
